@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  
+  --color-ferrari-red: #E8002D;
+  --color-carbon-black: #0A0A0A;
+  --color-deep-purple: #6C3CE1;
+}
+
+@layer base {
+  body {
+    @apply bg-carbon-black text-white font-sans overflow-x-hidden;
+    cursor: none;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-carbon-black;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ferrari-red rounded-full;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ferrari-red to-deep-purple;
+  }
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #E8002D;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: #E8002D;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1024px) {
+  .custom-cursor {
+    display: none;
+  }
+  body {
+    cursor: auto;
+  }
+}
